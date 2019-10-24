@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="mainData"
+            type="app.storytel.candidate.com.viewmodel.DetailingViewModel" />
+
+        <variable
+            name="scrollingActivity"
+            type="app.storytel.candidate.com.view.DetailsFragment" />
+
+    </data>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".view.DetailsFragment"
+        tools:showIn="@layout/fragment_details">
+
+        <RelativeLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true">
+
+            <TextView
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:id="@+id/details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#929593"
+                android:padding="@dimen/dimen_16dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/dimen_16dp"
+                android:textStyle="bold|italic" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recylerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/details"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:layout_marginBottom="@dimen/dimen_8dp"
+                android:paddingStart="@dimen/dimen_8dp"
+                android:paddingEnd="@dimen/dimen_8dp"
+                android:scrollbars="vertical"
+                app:postInfoListActivity="@{scrollingActivity}"
+                app:postInfoListAdpater="@{mainData}" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dimen_16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/generic_error"
+                android:textSize="@dimen/dimen_16dp"
+                android:textStyle="bold"
+                android:visibility="@{mainData.onError}" />
+
+            <Button
+                android:id="@+id/retry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/dimen_4dp"
+                android:background="@color/colorBlue"
+                android:text="@string/btnRetry"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/dimen_16dp"
+                android:textStyle="bold"
+                android:visibility="@{mainData.onError}" />
+
+        </LinearLayout>
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="@{mainData.progressBarVisible}" />
+    </FrameLayout>
+
+</layout>

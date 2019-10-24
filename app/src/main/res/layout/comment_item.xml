@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="mainData"
+            type="app.storytel.candidate.com.viewmodel.DetailingViewModel" />
+
+        <variable
+            name="postData"
+            type="app.storytel.candidate.com.model.Comment" />
+
+        <variable
+            name="simpleListAdapter"
+            type="app.storytel.candidate.com.adapters.CommentAdapter" />
+
+    </data>
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/dimen_8dp"
+        card_view:cardBackgroundColor="@color/colorGreenPaleLite"
+        card_view:cardCornerRadius="4dp">
+
+        <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{postData.name}"
+                android:textSize="@dimen/dimen_16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:text="@{postData.body}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:gravity="right"
+                android:text="@{postData.email}"
+                android:textStyle="bold"
+                tools:background="@color/colorPrimary" />
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</layout>
